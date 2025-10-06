@@ -1,0 +1,115 @@
+// import java.util.Map;
+// import java.util.TreeMap;
+
+// public class AVLTree<K extends Comparable<K>, V> {
+//     private AVLNode<K, V> root;
+
+//     // Convert TreeMap into AVL Tree
+//     public void fromTreeMap(TreeMap<K, V> treeMap) {
+//         for (Map.Entry<K, V> entry : treeMap.entrySet()) {
+//             root = insert(root, entry.getKey(), entry.getValue());
+//         }
+//     }
+
+//     // Insert a node (with AVL balancing)
+//     private AVLNode<K, V> insert(AVLNode<K, V> node, K key, V value) {
+//         if (node == null) {
+//             return new AVLNode<>(key, value);
+//         }
+
+//         // Standard BST insertion
+//         if (key.compareTo(node.key) < 0) {
+//             node.left = insert(node.left, key, value);
+//         } else if (key.compareTo(node.key) > 0) {
+//             node.right = insert(node.right, key, value);
+//         } else {
+//             return node; // Duplicate keys not allowed
+//         }
+
+//         // Update height
+//         node.height = 1 + Math.max(height(node.left), height(node.right));
+
+//         // Rebalance the node
+//         return balance(node);
+//     }
+
+//     // Get height of a node
+//     private int height(AVLNode<K, V> node) {
+//         return (node == null) ? 0 : node.height;
+//     }
+
+//     // Balance the AVL Tree
+//     private AVLNode<K, V> balance(AVLNode<K, V> node) {
+//         int balanceFactor = getBalanceFactor(node);
+
+//         // Left-Left Case (Right Rotation)
+//         if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0) {
+//             return rotateRight(node);
+//         }
+
+//         // Right-Right Case (Left Rotation)
+//         if (balanceFactor < -1 && getBalanceFactor(node.right) <= 0) {
+//             return rotateLeft(node);
+//         }
+
+//         // Left-Right Case (Left + Right Rotation)
+//         if (balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
+//             node.left = rotateLeft(node.left);
+//             return rotateRight(node);
+//         }
+
+//         // Right-Left Case (Right + Left Rotation)
+//         if (balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+//             node.right = rotateRight(node.right);
+//             return rotateLeft(node);
+//         }
+
+//         return node;
+//     }
+
+//     // Right Rotation
+//     private AVLNode<K, V> rotateRight(AVLNode<K, V> y) {
+//         AVLNode<K, V> x = y.left;
+//         AVLNode<K, V> T2 = x.right;
+
+//         x.right = y;
+//         y.left = T2;
+
+//         y.height = Math.max(height(y.left), height(y.right)) + 1;
+//         x.height = Math.max(height(x.left), height(x.right)) + 1;
+
+//         return x;
+//     }
+
+//     // Left Rotation
+//     private AVLNode<K, V> rotateLeft(AVLNode<K, V> x) {
+//         AVLNode<K, V> y = x.right;
+//         AVLNode<K, V> T2 = y.left;
+
+//         y.left = x;
+//         x.right = T2;
+
+//         x.height = Math.max(height(x.left), height(x.right)) + 1;
+//         y.height = Math.max(height(y.left), height(y.right)) + 1;
+
+//         return y;
+//     }
+
+//     // Get balance factor
+//     private int getBalanceFactor(AVLNode<K, V> node) {
+//         return (node == null) ? 0 : height(node.left) - height(node.right);
+//     }
+
+//     // In-order traversal (for testing)
+//     public void inOrder() {
+//         inOrder(root);
+//     }
+
+//     private void inOrder(AVLNode<K, V> node) {
+//         if (node != null) {
+//             inOrder(node.left);
+//             System.out.println(node.key + " -> " + node.value);
+//             inOrder(node.right);
+//         }
+//     }
+// }

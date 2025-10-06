@@ -1,0 +1,190 @@
+// public class AVLTestProduct
+// {
+//     class ProductNode
+//     {
+//         private Product product;
+//         ProductNode left, right;
+//         private int height;
+
+//         public ProductNode(Product product)
+//         {
+//             this.product = product;
+//             left = right = null;
+//             height = 0;
+//         }
+    
+//         public Product getProduct() {return product;}
+//         int getHeight(ProductNode productNode)
+//         return (productNode == null)? -1 : productNode.height;
+
+//         int getBalance(ProductNode productNode)
+//         {
+//             return productNode.left.getHeight()-productNode.right.getHeight();
+//         }
+
+//         ProductNode rightRotation(ProductNode y)
+//         {
+//             ProductNode x = y.left;
+//             ProductNode t = x.right;
+//             x.right = y;
+//             y.left = t;
+//             y.height = Math.max(y.left, y.right) + 1;
+//             x.height = Math.max(x.left, x.right) + 1;
+//             return x;
+//         }
+
+//         ProductNode leftRotation(ProductNode y)
+//         {
+//             ProductNode x = y.right;
+//             ProductNpde t = x.left;
+//             x.left = y;
+//             y.right = t;
+//             y.height = Math.max(y.left, y.right) + 1;
+//             x.height = Math.max(x.left, x.right) + 1;
+//             return x;
+//         }
+
+//         ProductNode findNode(ProductNode rootProductNode, Product product)
+//         {
+//             if(rootProductNode == null)
+//             {
+//                 System.out.println("Product not found");
+//                 return null;
+//             }
+//             else if(rootProductNode.getProduct().getProduct_ID() > product.getProduct_ID())
+//             {
+//                 return findNode(rootProductNode.left, product);
+//             }
+//             else if(rootProductNode.getProduct().getProduct_ID() < product.getProduct_ID())
+//             {
+//                 return findNode(rootProductNode.right, product);
+//             }
+//             else
+//             {
+//                 return rootProductNode;
+//             }
+//         }
+
+//         ProductNode InsertProductNode(ProductNode rootProductNode, Product product)
+//         {
+//             if(rootProductNode == null)
+//             {
+//                 return new ProductNode(product);
+//             }
+//             else if(rootProductNode.getProduct.getProduct_ID() > product.getProduct_ID())
+//             {
+//                 rootProductNode.left = insertProductNode(rootProductNode.left, product);
+//             }
+//             else if(rootProductNode.getProduct.getProduct_ID() < product.getProduct_ID())
+//             {
+//                 rootProductNode.right = insertProductNode(rootProductNode.right, product);
+//             }
+//             else
+//             {
+//                 return rootProductNode;
+//             }
+//             rootProductNode.height = Math.max(rootProductNode.keft.getHeight(), rootProductNode.right.getHeight()) + 1;
+            
+//             int balance = getBalance(rootProductNode);
+//             if(balance > 1)
+//             {
+//                 if(getBalance(rootProductNode.left) > 0) // left left case
+//                 {
+//                     return rightRotation(rootProductNode);
+//                 }
+//                 else if(getBalance(rootProductNode.left) < 0) // left right case
+//                 {
+//                     rootProductNode.left = leftRotation(rootProdcutNode.left)
+//                     return rightRotation(rootProdcutNode);
+//                 }
+//             }
+//             else if(balance < -1)
+//             {
+//                 if(getBalance(rootProdcutNode.right) < 0) // right right case
+//                 {
+//                     return leftRotation(rootProductNode);
+//                 }
+//                 else if(getBalance(rootProdcutNode.right) > 0) // right left case
+//                 {
+//                     rootProductNode.right = rightRotation(rootProductNode.right);
+//                     return leftRotation(rootProductNode);
+//                 }
+//             }
+//         }
+//         ProductNode minimumNode(ProductNode rootProductNode)
+//         {
+//             if(rootProductNode.left == null)
+//                 return rootProductNode;
+//             else
+//                 return minimumNode(rootProductNode.left);
+//         }
+//         ProductNode deleteNode(ProductNode rootProductNode, Product product)
+//         {
+//             if(rootProductNode == null)
+//             {
+//                 System.out.println("Product not found.")
+//                 return rootProductNode;
+//             }
+//             if(rootProductNode.getProduct.getProduct_ID() > product.getProduct_ID())
+//             {
+//                 rootProductNode.left = deleteNode(rootProductNode.left, product);
+//             }
+//             else if(rootProductNode.getProduct().getProductID() < product.getProduct_ID())
+//             {
+//                 rootProductNode.right = deleteNode(rootProductNode.right, Product);
+//             }
+//             else
+//             {
+//                 if(rootProdcutNode.left == null && rootProductNode.right == null)
+//                 {
+//                     return null;
+//                 }
+//                 else if(rootProdcutNode.left == null)
+//                 {
+//                     return rootProdcutNode.right;
+//                 }
+//                 else if(rootProductNode.right == null)
+//                 {
+//                     return rootProductNode.left;
+//                 }
+//                 else
+//                 {
+//                     ProductNode temp = minimumNode(rootProdcutNode.right);
+//                     root.getProduct() = temp.getProduct();
+//                     rootProdcutNode.right = deleteNode(rootProdcutNode.right, temp.getProduct());
+//                 }
+//             }
+//             if(rootProductNode == null)
+//             {
+//                 return rootProductNode;
+//             }
+//             rootProdcutNode.height = Math.max(rootProdcutNode.left, rootProdcutNode.right) + 1;
+//             int balance = getBalance(rootProductNode);
+//             if(balance > 1)
+//             {
+//                 if(getBalance(rootProductNode.left) > 0) // left left case
+//                 {
+//                     return rightRotation(rootProductNode);
+//                 }
+//                 else if(getBalance(rootProductNode.left) < 0) // left right case
+//                 {
+//                     rootProductNode.left = leftRotation(rootProdcutNode.left)
+//                     return rightRotation(rootProdcutNode);
+//                 }
+//             }
+//             else if(balance < -1)
+//             {
+//                 if(getBalance(rootProdcutNode.right) < 0) // right right case
+//                 {
+//                     return leftRotation(rootProductNode);
+//                 }
+//                 else if(getBalance(rootProdcutNode.right) > 0) // right left case
+//                 {
+//                     rootProductNode.right = rightRotation(rootProductNode.right);
+//                     return leftRotation(rootProductNode);
+//                 }
+//             }
+//             return rootProductNode;
+//         }
+//     }
+// }
